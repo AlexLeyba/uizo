@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="single_news">
+        <p>{{ single.name }}</p>
+        <p><img src="{{ MEDIA_URL }}{{ single.picture.url }}" alt=""></p>
+        <p>{{ single.text|safe }}</p>
+    </div>
+    <div class="photo_news">
+        {% if single.get_files %}
+            {% for f in single.get_files %}
+                <img src="{{ f.photo.url }}" alt="">
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div class="last_eight">
+        {% for news in last_eight %}
+            <a href="{{ news.get_absolute_url }}">
+                <p>{{ news.date }}</p>
+                <p>{{ news.name }}</p>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

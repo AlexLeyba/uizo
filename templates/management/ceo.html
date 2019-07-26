@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load staticfiles header %}
+{% block content %}
+    {% menu_about %}
+    <hr class="line">
+    <section class="leadership">
+        <div class="leadership__wrap">
+            <p class="leadership__title">Руководство</p>
+            {% for ceos in ceo %}
+                <div class="leadership__block-people">
+                    <div class="block-people__photo"><img src="{{ MEDIA_URL }}{{ ceos.photo.url }}" alt=""></div>
+                    <div class="block-people__positions">
+                        <p class='block-people__position'>{{ ceos.position }}</p>
+                        <p class='block-people__fio'>{{ ceos.name }}</p>
+                    </div>
+                    <div class="wrap_blocks-phone">
+                        <div class="block-people__phones">
+                            <p class='block-people__position'>Телефон:</p>
+                            <p class='block-people__fio'>{{ ceos.phone }}</p>
+                        </div>
+                        <div class="block-people__times">
+                            <p class='block-people__position'>Время приема:</p>
+                            <p class='block-people__fio'>{{ ceos.time }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

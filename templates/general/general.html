@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <section class="glav_item">
+        <div class="regular1 slider">
+            {% for top_sliders in top_slider %}
+                <a href="{{ top_sliders.url }}" class="headblock">
+                    {% if top_sliders.picture %}
+                        <img class="vybor" src="{{ top_sliders.picture.url }}"/>
+                    {% else %}
+                        <p class="textglav">
+                            {{ top_sliders.name }}
+                        </p>
+                        <p class="textglav1">
+                            {{ top_sliders.text|safe|truncatewords:20 }}
+                        </p>
+                        </a>
+                    {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+    <section class="block-famaly">
+        <p class="block-famaly__title">
+            Предоставление<br/>
+            земельных участков
+        </p>
+        <p class="block-famaly__info">многодетным семьям</p>
+    </section>
+
+    <section class="last-news">
+        <h2 class="last-news__title-block">Последние новости</h2>
+        <div class="wrap-news">
+            <a href="{{ one_news.get_absolute_url }}" class="main-news">
+                <img src="{{ MEDIA_URL }}{{ one_news.picture.url }}" alt=""/>
+                <div class="main-news__info">
+                    <p class="main-news__info__data">{{ one_news.date }}</p>
+                    <p class="main-news__info__text">
+                        {{ one_news.name }}
+                    </p>
+                </div>
+            </a>
+
+            <div class="lastet_news">
+                {% for news in last_four %}
+                    <a href="{{ news.get_absolute_url }}" class="lastet_news__block-news">
+                        <div class="lastet_news__info">
+                            <p class="main-news__info__data">{{ news.date }}</p>
+                            <p class="main-news__info__text">
+                                {{ news.name }}
+                            </p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <a class="last-news__btn" href="{% url 'allnews' %}">Посмотреть все</a>
+
+    <section class="common">
+        <h2 class="comun__title-block">Последние новости</h2>
+
+        <div class="wrap__common">
+            <a href="{% url 'page' page='kontakty'%}" class="commons-block mes">
+                <div class="commons-block__text">
+                    <h3>Контакты</h3>
+                    <p>
+                   Наши контакты.
+                    </p>
+                </div>
+                <img src="{% static 'img/imgsite/Mes.png' %}" alt=""/>
+            </a>
+
+            <a href="{% url 'page' page='voprosy-otvety' %}" class="commons-block qest">
+                <div class="commons-block__text">
+                    <h3>Вопросы - ответы</h3>
+                    <p>
+                        Ответы на популярные вопросы.
+                    </p>
+                </div>
+                <img src="{% static 'img/imgsite/qest.png' %}" alt=""/>
+            </a>
+            <a href="{% url 'feedback' %}" class="commons-block doc">
+                <div class="commons-block__text">
+                    <h3>Обратная связь</h3>
+                    <p>
+                        Задать вопрос онлайн можно здесь.
+                    </p>
+                </div>
+                <img src="{% static 'img/imgsite/doc.png' %}" alt=""/>
+            </a>
+        </div>
+    </section>
+
+    <section class="slider1">
+        <div class="slider_container">
+            <div class="regular slider">
+                {% for bot_sliders in bot_slider %}
+                    <div>
+                        <a href="{{ bot_sliders.url }}"><img src="{{ bot_sliders.picture.url }}"/></a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="block-info">
+        <p class="block-info__title">
+            Управление имущественных и земельных отношений Липецкой области
+            уведомляет арендаторов земельных участков, государственная собственность
+            на которые не разграничена на территории Липецкого муниципального
+            района, о смене арендодателя и об изменении реквизитов для оплаты
+            арендной платы, применяемых с 01.01.2016:
+        </p>
+        <p class="block-info__info-text">
+            Арендодатель: Управление имущественных и земельных отношений Липецкой
+            области<br/>
+            <br/>
+            Адрес (место нахождения): 398019 Липецкая область, город Липецк, ул.
+            Скороходова, д. 2<br/>
+            <br/>
+            Получатель: Управление Федерального казначейства по Липецкой области
+            <br/>
+            (Управление имущественных и земельных отношений Липецкой области)<br/>
+            Счет 40101810200000010006<br/>
+            Банк получателя: Отделение Липецк г. Липецк,<br/>
+            БИК 044206001<br/>
+            ИНН 4826006839<br/>
+            КПП 482601001<br/>
+            КБК 042 11105013100000120 <br/>
+            (арендная плата за земельные участки, государственная собственность на
+            которые не разграничена)<br/>
+            ОКТМО ______<br/>
+            (код соответствующего сельского поселения, в границах которого
+            расположен арендуемый <br/>земельный участок, заполняется арендатором
+            самостоятельно- см. Выписку из ОКТМО)<br/>
+
+            Оплата производится в банках г. Липецка, а также терминалах
+            самообслуживания Сбербанка РФ <br/>и с помощью системы Сбербанк-Онл@йн
+            (категория «Налоги)
+        </p>
+    </section>
+    <script src="{% static 'js/jq.js' %}" type="text/javascript"></script>
+    <script
+            src="{% static 'slick/slick.js' %}"
+            type="text/javascript"
+            charset="utf-8"
+    ></script>
+    <script>
+        $(".regular").slick({
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            autoplay: true
+        });
+    </script>
+    <script>
+        $(".regular1").slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            autoplay: true
+        });
+    </script>
+{% endblock %}

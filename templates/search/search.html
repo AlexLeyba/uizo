@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load staticfiles header %}
+{% block title %}
+{% endblock %}
+{% menu %}
+{% block content %}
+    <style>
+        .info_page search {
+            width: 87vw;
+            margin: 0 auto;
+        }
+    </style>
+    <section class="info_page search">
+        <div class="title__block">
+            <div class="title">
+                <h2 class="title-search">Поиск : <img src="{% static 'imgs/green_find.png' %}" class="find_par_img" alt="">
+                </h2>
+
+            </div>
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="error-search" {% if message.tags %} {{ message.tags }} {% endif %}>
+                            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}{% endif %}
+                            <span>{{ message }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        <div class="info_page_content">
+            {% if found %}
+                {% for founded in found %}
+                    {% for f in founded %}
+                        <div>
+                        {% if f.file %}
+                            <div class="wrap__sresult_title">
+                                <a class="sresult_title" href="{{ f.file.url }}">{{ f.name }}</a>
+                            </div>
+
+                        {% else %}
+                            <div class="wrap__sresult_title">
+                                <a class="sresult_title" href="{{ f.get_absolute_url }}">
+                                    {{ f.name }}
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            {% endif %}
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

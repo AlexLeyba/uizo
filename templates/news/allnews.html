@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <section class="news">
+        <p class="wrap-news__title">Новости управления</p>
+        <div class="news-wrap">
+            {% for new in news %}
+                <a href="{{ new.get_absolute_url }}" class="news-block-small">
+                    <img
+                            class="news-block-small__img"
+                            src="{{ MEDIA_URL }}{{ new.picture.url }}"
+                            alt=""
+                    />
+                    <p class="news-block-small__data">{{ new.date }}</p>
+                    <p class="news-block-small__text">
+                        {{ new.name }}
+                    </p>
+                    <p class="news-block-small__text">
+                        {{ new.anons }}
+                    </p>
+                </a>
+            {% endfor %}
+            {#            <div class="news-block-small">#}
+            {#                <img#}
+            {#                        class="news-block-small__img"#}
+            {#                        src="img/imgsite/baner.png"#}
+            {#                        alt=""#}
+            {#                />#}
+            {#                <p class="news-block-small__data">23 апреля 2019</p>#}
+            {#                <p class="news-block-small__text">#}
+            {#                    Подведение итогов по достижению целевых показателей дорожных карт#}
+            {#                    «Регистрация права собственности на земельные участки и объекты#}
+            {#                    недвижимого имущества» и «Постановка на кадастровый учет земельных#}
+            {#                    участков...#}
+            {#                </p>#}
+            {#            </div>#}
+            {#            <div class="news-block-small">#}
+            {#                <img#}
+            {#                        class="news-block-small__img"#}
+            {#                        src="img/imgsite/baner.png"#}
+            {#                        alt=""#}
+            {#                />#}
+            {#                <p class="news-block-small__data">23 апреля 2019</p>#}
+            {#                <p class="news-block-small__text">#}
+            {#                    Подведение итогов по достижению целевых показателей дорожных карт#}
+            {#                    «Регистрация права собственности на земельные участки и объекты#}
+            {#                    недвижимого имущества» и «Постановка на кадастровый учет земельных#}
+            {#                    участков...#}
+            {#                </p>#}
+            {#            </div>#}
+            {#            <div class="news-block-small">#}
+            {#                <img#}
+            {#                        class="news-block-small__img"#}
+            {#                        src="img/imgsite/baner.png"#}
+            {#                        alt=""#}
+            {#                />#}
+            {#                <p class="news-block-small__data">23 апреля 2019</p>#}
+            {#                <p class="news-block-small__text">#}
+            {#                    Подведение итогов по достижению целевых показателей дорожных карт#}
+            {#                    «Регистрация права собственности на земельные участки и объекты#}
+            {#                    недвижимого имущества» и «Постановка на кадастровый учет земельных#}
+            {#                    участков...#}
+            {#                </p>#}
+            {#            </div>#}
+            {#            <div class="news-block-big">#}
+            {#                <img class="news-block-big__img" src="img/imgsite/baner.png" alt=""/>#}
+            {#                <p class="news-block-big__data">23 апреля 2019</p>#}
+            {#                <p class="news-block-big__text">#}
+            {#                    Подведение итогов по достижению целевых показателей дорожных карт#}
+            {#                    «Регистрация права собственности на земельные участки и объекты#}
+            {#                    недвижимого имущества» и «Постановка на кадастровый учет земельных#}
+            {#                    участков...#}
+            {#                </p>#}
+            {#            </div>#}
+            {#            <div class="news-block-big">#}
+            {#                <img class="news-block-big__img" src="img/imgsite/baner.png" alt=""/>#}
+            {#                <p class="news-block-big__data">23 апреля 2019</p>#}
+            {#                <p class="news-block-big__text">#}
+            {#                    Подведение итогов по достижению целевых показателей дорожных карт#}
+            {#                    «Регистрация права собственности на земельные участки и объекты#}
+            {#                    недвижимого имущества» и «Постановка на кадастровый учет земельных#}
+            {#                    участков...#}
+            {#                </p>#}
+            {#            </div>#}
+            {#            <div class="news-block-big">#}
+            {#                <img class="news-block-big__img" src="img/imgsite/baner.png" alt=""/>#}
+            {#                <p class="news-block-big__data">23 апреля 2019</p>#}
+            {#                <p class="news-block-big__text">#}
+            {#                    Подведение итогов по достижению целевых показателей дорожных карт#}
+            {#                    «Регистрация права собственности на земельные участки и объекты#}
+            {#                    недвижимого имущества» и «Постановка на кадастровый учет земельных#}
+            {#                    участков...#}
+            {#                </p>#}
+            {#            </div>#}
+        </div>
+    </section>
+{% endblock %}

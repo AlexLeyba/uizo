@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load staticfiles header %}
+{% block content %}
+    <section class="excons">
+        <div class="wrap__excons">
+            <p class="excons__title">Аукционы и конкурсы</p>
+            {% for auctions in auction %}
+                <div class="wrap__excons__block-info">
+                    <p class="block-info__date">{{ auctions.date }}</p>
+                    <p class="block-info__title-text">Извещение о проведении аукциона:</p>
+                    <p class="block-info__text">
+                        {{ auctions.text|safe }}
+                    </p>
+                    <a class="block-info__down-doc" href="#">Документы</a>
+                    <div class="wrap-doc">
+                        {% for f in auctions.get_files %}
+                            <p class="block-info__name-fale">{{ f.name }}</p>
+                            <a class="wrap-doc__down-doc" href="{{ f.file.url }}">
+                                <img
+                                        class="block-info__img-down"
+                                        src="{% static '/img/imgsite/download.png' %}"
+                                        alt=""
+                                /></a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

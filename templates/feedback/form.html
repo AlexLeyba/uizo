@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load staticfiles header %}
+{% block content %}
+    <p class="title-page">Обратная связь</p>
+    <section class="communication">
+        <p class="communication__info-title">Внимание!</p>
+        <p class="communication__info">
+            Обращения в государственные органы в письменной форме или в форме
+            электронного документа, с использованием сайтов, электронных почтовых
+            адресов, принадлежащих другим лицам, т.е. через опосредованных лиц, не
+            гарантирует защиту Ваших персональных данных и неразглашение сведений,
+            содержащихся в обращении и касающихся Вашей частной жизни.<br/><br/>
+            Для защиты Ваших персональных данных и неразглашения сведений,
+            содержащихся в обращении и касающихся Вашей частной жизни обращайтесь с
+            интересующим Вас вопросом непосредственно в государственные органы в
+            письменной форме или форме электронного документа на официальные сайты
+            государственных органов.
+        </p>
+    </section>
+    <section class="form-comun">
+        <form class="form-comun__forms" action="" method="POST" class="">
+            {% csrf_token %}
+            <div class="wrap-side">
+                <div class="forms__left-site">
+                    <p class="left-site__title-input">Ваше имя*</p>
+                    {{ form.author }}
+
+                    <p class="left-site__title-input">Номер телефона*</p>
+                    {{ form.phone }}
+
+                    <p class="left-site__title-input">Электронная почта</p>
+                    {{ form.email }}
+
+                </div>
+                <div class="forms__right-site">
+                    <p class="left-site__title-input">Вопрос*</p>
+                    {{ form.text }}
+                </div>
+            </div>
+
+
+            <div class="checkbox">
+                <div class="checkbox__checkbox-chose">
+                    {{ form.check }}
+                    <label for="id_check">Я согласен с использованием моих персональных данных
+                    </label>
+                </div>
+
+                <div class="checkbox__checkbox-chose">
+                    {{ form.check2 }}
+                    <label for="id_check2">Я принимаю правила работы сайта
+                    </label>
+                </div>
+            </div>
+            <input id="button" class="forms__submit-btn" type="submit" value="Отправить"/>
+        </form>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="itog-mes" {% if message.tags %} {{ message.tags }}{% endif %}>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}{% endif %}
+                    <span class="text-danger">{{ message }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
+    </section>
+
+{#    <form action="" method="POST" class="">#}
+{#        {% csrf_token %}#}
+{#        {{ form.author }}#}
+{#        {{ form.email }}#}
+{#        {{ form.phone }}#}
+{##}
+{#        {{ form.check }}#}
+{#        {{ form.check2 }}#}
+{#        <input id="button" type="submit" value="Отправить сообщение">#}
+{#    </form>#}
+{#    {% if messages %}#}
+{#        <ul class="messages">#}
+{#            {% for message in messages %}#}
+{#                <li{% if message.tags %} {{ message.tags }}{% endif %}>#}
+{#                    {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}{% endif %}#}
+{#                    <span class="text-danger">{{ message }}</span>#}
+{#                </li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    {% endif %}#}
+{#{% endblock %}#}

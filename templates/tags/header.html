@@ -1,0 +1,174 @@
+{% load staticfiles header %}
+<section class="header">
+    <div class="header-top">
+        <a href="/"><img class="logo-site" src="{% static '/img/imgsite/logo.png' %}" alt=""/></a>
+        <div class="title-site">
+            <h1>Управление имущественных и земельных отношений</h1>
+            <p>Липецкой области</p>
+        </div>
+        <div class="search-block">
+            <form action="{% url 'search' %}" method="POST">
+                {% csrf_token %}
+                <input class="search-pole" type="text" placeholder="Найти..." name="q"/>
+                <input class="search-site" type="submit" value="" >
+{#              <img class="logo-site" name="q" src="{% static '/img/imgsite/img-search.png' %}" alt="" />#}
+            </form>
+        </div>
+        <div class="phone-info">
+            <p>Телефон доверия: <span class="bold">(4742) 22-34-25</span></p>
+            <p>Телефон/Факс: <span class="bold">(4742) 22-27-32</span></p>
+        </div>
+    </div>
+    <hr class="line">
+    <nav class="row">
+        <a class="nav-link" href="{% url 'page' page='ob-upravlenii' %}">Об управлении</a>
+        {% for cat in category_support %}
+            {% for page in cat.get_all %}
+                <a class="nav-link" href="{{ page.get_absolute_url }}">{{ page.name }}</a>
+            {% endfor %}
+        {% endfor %}
+        <a class="nav-link" id="dopMenuActivity" href="{% url 'page' page='deyatelnost' %}">Деятельность</a>
+        <div class="drop-menu-activity fide">
+            {% for cat in category_activity %}
+                {% for page in cat.get_all %}
+                    <a href="{{ page.get_absolute_url }}">{{ page.name }}</a>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <a class="nav-link" id="dopMenuOtdel" href="{% url 'page' page='otdely' %}">Отделы</a>
+        <div class="drop-menu-otdel fide">
+            {% for cat in category_departments %}
+                {% for page in cat.get_all %}
+                    <a href="{{ page.get_absolute_url }}">{{ page.name }}</a>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <a class="nav-link" href="{% url 'auction' %}">Аукционы и конкурсы</a>
+        <a class="nav-link" id="dopMenuСontact" href="{% url 'page' page='kontakty' %}">Контакты</a>
+        <div class="drop-menu-contact fide">
+            <a href="{% url 'feedback' %}">Обратная связь</a>
+            {% for cat in category_contacts %}
+                {% for page in cat.get_all %}
+                    <a href="{{ page.get_absolute_url }}">{{ page.name }}</a>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </nav>
+    <hr class="line">
+
+
+</section>
+<section class="mobail-header">
+    <img id="mobail" src="{% static 'img/imgsite/burger.svg' %}" alt="">
+
+    <div class="wrap-mobail-title-site">
+        <h1>Уизо</h1>
+        <p>Липецкой области</p>
+    </div>
+    <a class="logo-site" href="/"><img src="{% static 'img/imgsite/logo.png' %}" alt=""/></a>
+</section>
+<div id="navMobail" class="fide">
+    <div class="mobail-nav">
+        <a href="{% url 'about' %}">Об управлении</a>
+        {% for cat in category_support %}
+            {% for page in cat.get_all %}
+                <a href="{{ page.get_absolute_url }}">{{ page.name }}</a>
+            {% endfor %}
+        {% endfor %}
+        <a id="dopMenuActivity" href="{% url 'page' page='deyatelnost' %}">Деятельность</a>
+        <hr class="mobail-line">
+        <div class="mobail-nav-dop">
+            {% for cat in category_activity %}
+                {% for page in cat.get_all %}
+                    <a href="{{ page.get_absolute_url }}">{{ page.name }}</a>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <a href="{% url 'page' page='otdely' %}">Отделы</a>
+        <div class="mobail-nav-dop">
+            {% for cat in category_departments %}
+                {% for page in cat.get_all %}
+                    <a href="{{ page.get_absolute_url }}">{{ page.name }}</a>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        <a href="{% url 'auction' %}">Аукционы и конкурсы</a>
+        <a id="dopMenuСontact" href="{% url 'page' page='kontakty' %}">Контакты</a>
+        <hr class="mobail-line">
+        <div class="mobail-nav-dop">
+            <a href="{% url 'feedback' %}">Обратная связь</a>
+            {% for cat in category_contacts %}
+                {% for page in cat.get_all %}
+                    <a href="{{ page.get_absolute_url }}">{{ page.name }}</a>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    var btnBurger = document.querySelector('#mobail');
+    var navMobail = document.querySelector('#navMobail');
+
+    var dopMenuActivity = document.querySelector('#dopMenuActivity');
+    var linkdopMenuActivity = document.querySelector('.drop-menu-activity');
+
+    var dopMenuOtdel = document.querySelector('#dopMenuOtdel');
+    var linkdopMenuOtdel = document.querySelector('.drop-menu-otdel');
+
+
+    var dopMenuСontact = document.querySelector('#dopMenuСontact');
+    var linkdopMenuContact = document.querySelector('.drop-menu-contact');
+
+    var body = document.querySelector('body');
+    var nav = document.querySelectorAll('.nav-link');
+    var headerTop = document.querySelector('.header-top');
+
+
+    body.addEventListener('click', function () {
+        linkdopMenuContact.classList.add("fide");
+        linkdopMenuActivity.classList.add("fide")
+
+    });
+    headerTop.addEventListener('mouseover', function () {
+        linkdopMenuContact.classList.add("fide");
+        linkdopMenuActivity.classList.add("fide");
+        linkdopMenuOtdel.classList.add("fide");
+    });
+    for (var i = 0; i < nav.length; i++) {
+        nav[i].addEventListener('mouseover', function () {
+            linkdopMenuContact.classList.add("fide");
+            linkdopMenuActivity.classList.add("fide");
+            linkdopMenuOtdel.classList.add("fide");
+        });
+    }
+
+    btnBurger.addEventListener('click', function () {
+        navMobail.classList.toggle("fide")
+    });
+
+    dopMenuActivity.addEventListener('mouseover', function () {
+        linkdopMenuActivity.classList.toggle("fide");
+        linkdopMenuContact.classList.add("fide")
+    });
+    linkdopMenuActivity.addEventListener('mouseleave', function () {
+        linkdopMenuActivity.classList.add("fide")
+    });
+
+    dopMenuСontact.addEventListener('mouseover', function () {
+        linkdopMenuContact.classList.toggle("fide");
+        linkdopMenuActivity.classList.add("fide")
+    });
+    linkdopMenuContact.addEventListener('mouseleave', function () {
+        linkdopMenuContact.classList.add("fide")
+    });
+
+    dopMenuOtdel.addEventListener('mouseover', function () {
+        linkdopMenuOtdel.classList.toggle("fide")
+        linkdopMenuActivity.classList.add("fide")
+    });
+    linkdopMenuOtdel.addEventListener('mouseleave', function () {
+        linkdopMenuOtdel.classList.add("fide")
+    });
+
+</script>

@@ -1,0 +1,9 @@
+*uizoenv
+*.idea
+*my_settings.py
+*__pycache__
+*media
+pycache/
+*/pycache/
+*.py[cod]
+

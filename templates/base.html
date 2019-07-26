@@ -1,0 +1,50 @@
+{% load staticfiles header %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Уизо</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    <link rel="stylesheet" href="{% static 'fonts/geometria/stylesheet.css' %}"/>
+    <link rel="stylesheet" href="{% static 'slick/slick.css' %}"/>
+    <link rel="stylesheet" href="{% static 'slick/slick-theme.css' %}"/>
+</head>
+<body>
+<section class="wraper-content">
+    <section class="content">
+        {% menu %}
+        {% block content %}
+        {% endblock %}
+    </section>
+    <footer class="footer">
+        <div class="wrap-footer">
+            <div class="wrap-footer__left-bar">
+                <p class="left-bar__pols-site">
+                    © Управление имущественных и земельных отношений Липецкой области,
+                    2012-2019.<br/>
+                    <br/>
+                    Все материалы официального сайта Управления имущественных и
+                    земельных отношений Липецкой области могут свободно использоваться
+                    без каких-либо ограничений, если не указано иное. Предварительного
+                    согласия на перепечатку не требуется.
+                </p>
+                <p class="left-bar__develop">Разработка сайта ОБУ ИТЦ, 2019</p>
+            </div>
+            <div class="wrap-footer__right-bar">
+                <p>
+                    г. Липецк, ул. Скороходова, д. 2 Телефон доверия: (4742) 22-34-25
+                    Телефон / факс: (4742) 22-27-32
+                </p>
+                <a href="../uizo-Egor-php/contact/form.php">Обратная связь</a>
+            </div>
+        </div>
+    </footer>
+</section>
+
+<script src="{% static '/js/jq.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

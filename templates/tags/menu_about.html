@@ -1,0 +1,9 @@
+{% load staticfiles header %}
+<section class="row-dop">
+    <a href="{% url 'ceo' %}">Руководство</a>
+    {% for cat in category_about %}
+        {% for page in cat.get_all %}
+            <a href="{{ page.get_absolute_url }}">{{ page.name }}</a>
+        {% endfor %}
+    {% endfor %}
+</section>

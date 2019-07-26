@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load staticfiles header %}
+{% block title %}
+{% endblock %}
+{% block content %}
+    {% if page.name == 'Об управлении' %}
+        {% menu_about %}
+    {% endif %}
+    {% if page.name == 'Положение' %}
+        {% menu_about %}
+    {% endif %}
+    {% if page.name == 'История становления и развития' %}
+        {% menu_about %}
+    {% endif %}
+    <h1 class="title-page">{{ page.name }}</h1>
+    <section class="title-page__text">
+        <p class="wrap-content__text">
+            {{ page.text|safe }}
+        </p>
+    </section>
+    <section class="title-page__text">
+        {% if page.get_infograph %}
+            {% for infograph in page.get_infograph %}
+                <img class="infograf" src="{{ MEDIA_URL }}{{ infograph.picture.url }}" alt="">
+            {% endfor %}
+        {% endif %}
+    </section>
+    {% if page.get_bunner %}
+        <section>
+
+        </section>
+        <section class="link-prace">
+            <div class="wrap__link-prace">
+                {% for bunner in page.get_bunner %}
+                    <p class="link-wrap__text">{{ bunner.text|safe }}</p>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+    {% if page.get_accord %}
+        <section class="title-page__text">
+            {% for accord in page.get_accord %}
+                <div class="faq_list">
+                    <div class="faq_item">
+                        <div class="faq_item_title">
+                            <div class="faq_item_title_inner">
+                                <p>{{ accord.name }}</p>
+                            </div>
+                        </div>
+                        <div class="faq_item_body">
+                            {{ accord.text|safe }}
+                        </div>
+                    </div>
+                </div>
+                </section>
+            {% endfor %}
+    {% endif %}
+    <section class="links">
+        {% if page.get_files %}
+            {% for file in page.get_files %}
+                <div class="links__wrap">
+                    <p class="wrap-content__title">
+                        Информация о заключенных договорах аренды с субъектами МСП
+                    </p>
+                    <div class="content-link__wrap">
+                        <p>{{ file.name }}</p>
+                        <a href="{{ file.file.url }}"><img src="{% static 'img/imgsite/download.png' %}" alt=""/></a>
+                    </div>
+                    <hr class="link-hr"/>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </section>
+    {% if page.name == 'Контакты' %}
+        {% include 'tags/maps.html' %}
+    {% endif %}
+{% endblock %}
